@@ -23,6 +23,9 @@ bank_df_salary = pd.DataFrame({
 # Merging all dataframes based on 'Bank Client ID'
 bank_df_all = pd.merge(pd.concat([bank_df_1, bank_df_2]), bank_df_salary, on='Bank Client ID')
 
+#print statement for before and after to test functionality of new method
+print(bank_df_all)
+
 # Adding a new bank client to the dataframe
 new_client_df = pd.DataFrame({
     'Bank Client ID': ['11'],
@@ -31,5 +34,18 @@ new_client_df = pd.DataFrame({
     'Annual Salary [$/year]' : [1000]
 })
 
-# Appending the new client to the existing dataframe
-new_df = bank_df_all.append(new_client_df, ignore_index=True)
+#The original coursera course had used the commented out depreciated append method
+#but since this course was made it has been proven to be better to use the concat method 
+# which I have demontrated below
+
+#Old depriciated method
+
+## Appending the new client to the existing dataframe
+#new_df = bank_df_all.append(new_client_df, ignore_index=True)
+
+#new method
+new_df = pd.concat([new_client_df, bank_df_all])
+
+#print statement to test 
+print(new_df)
+print("Dataframe: Updated!")
